@@ -226,7 +226,68 @@ block的相关方法参考
 > 		}
 
 
+通知传值（NSNotification）
+---
+通知中心传值，可以跨越多个页面传值，一般也是从后面的页面传给前面的页面。当然，正向传值也是OK的。
 
+思路：
+
+第三个界面的值传给第一个界面。
+
+1、在第一个界面建立一个通知中心，通过通知中心，注册一个监听事件
+
+2、在第一个界面中，设置接收到通知的事件（也就是观察者所监听的事件）
+
+3、在第一个界面中的dealloc中，将通知中心remove掉（这一步是必须的，不要忘记哦🙅）
+
+4、在第三个界面中，建立一个通知中心，通过通知中心，发送通知（发送通知的过程就是传值的过程，将要传输的值作为object的值传给第一个界面）
+
+代码：
+
+第一个界面
+
+	//通知中心是个单例
+
+	NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
+	
+	//注册一个监听事件。第三个参数的事件名，系统用这个名字来区别不同的事件。
+	
+	 [notiCenter addObserver:self selector:@selector(receiveNotification:) name:@"notification" object:nil];
+	
+	//@selector(receiveNotification:)方法，就是接收到通知之后的事件
+
+ 	- (void)receiveNotification:(NSNotification *)noti
+	{
+	
+	self.textField.text = noti.object;
+   
+     // NSNotification 有三个属性，name, object, userInfo，其中最关键的object就是从第三个界面传来的数据。name就是通知事件的名字， userInfo一般是事件的信息。
+     
+    NSLog(@"%@ === %@ === %@", noti.object, noti.userInfo, noti.name);
+
+	 }
+	 
+	 // 第一界面中dealloc中移除监听的事件
+	 
+	 - (void)dealloc
+	{
+	    // 移除当前对象监听的事件
+	    
+	    [[NSNotificationCenter defaultCenter] removeObserver:self];
+	    
+	}
+
+第三个界面（即要传值的界面）
+
+	 // 创建一个通知中心
+	 
+	  NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+	  
+	   // 发送通知. 其中的Name填写第一界面的Name， 系统知道是第一界面来相应通知， object就是要传的值。 UserInfo是一个字典， 如果要用的话，提前定义一个字典， 可以通过这个来实现多个参数的传值使用。
+ 
+         [center postNotificationName:@"notification" object:_label.text userInfo:dic];
+         
+总结：若A想往B传值，需要在A界面建立一个通知中心，发送消息。B界面建立通知中心，通过通知中心创建监听者，设置接收的信息。在B界面一定要将通知中心remove掉。
 
 
 
