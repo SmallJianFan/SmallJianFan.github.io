@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="前言简单认识一下单例吧~ 在写项目的时候，我们实际用到了很多系统给我们提供的单例类。 如： [UIApplication sharedApplication];  //应用程序实例类  [NSNotificationCenter defaultCenter];//消息中心实例类  [NSFileManager defaultManager];//文件管理实例类  [NSUserDefaults s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-07T08:57:37.791Z">
+<meta property="og:updated_time" content="2018-12-07T09:33:48.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS--单例模式">
 <meta name="twitter:description" content="前言简单认识一下单例吧~ 在写项目的时候，我们实际用到了很多系统给我们提供的单例类。 如： [UIApplication sharedApplication];  //应用程序实例类  [NSNotificationCenter defaultCenter];//消息中心实例类  [NSFileManager defaultManager];//文件管理实例类  [NSUserDefaults s">
@@ -322,11 +322,12 @@
 
 [NSURLCache sharedURLCache];//请求缓存实例类
 </code></pre><p>一般在程序中，经常调用的类，如工具类，公共跳转类等都会采用单例模式。</p>
-<p>如：1、在某个应用程序中，共享一份资源（这份资源只需要创建初始化一次）</p>
-<p>2、网络计数器</p>
-<p>3、分享界面、登录界面、评论界面不登录会跳转到唯一界面登录界面（可以用单例实现）</p>
-<p>4、点击跳转，控制器设置为单例，该控制器不会被销毁，依然存在内存中，返回再次回去，再点击进来，则会快速进入不会创建对应的新的控制器</p>
-<p>1、单例是什么？</p>
+<p>如：</p>
+<p>a. 在某个应用程序中，共享一份资源（这份资源只需要创建初始化一次）</p>
+<p>b. 网络计数器</p>
+<p>c. 分享界面、登录界面、评论界面不登录会跳转到唯一界面登录界面（可以用单例实现）</p>
+<p>d. 点击跳转，控制器设置为单例，该控制器不会被销毁，依然存在内存中，返回再次回去，再点击进来，则会快速进入不会创建对应的新的控制器</p>
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>1、单例是什么？</p>
 <p>单例模式就是一个类只有一个实例。在 Foundation 和 Application Kit 框架中的一些类只允许创建单个对象，即这些类在当前进程中的只有唯一一个实例。</p>
 <p>2、为什么使用单例设计？简单描述下对单利模式设计的理解？</p>
 <p>a.单例设计是用来限制一个类只能创建一个对象，那么此对象中的属性可以存储全局共享的数据，所有的类都可以访问—&gt;设置此单例对象中的属性数据。</p>
@@ -564,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">2.</span> <span class="nav-text">简单介绍</span></a></li></ol></div>
             
 
           </div>
